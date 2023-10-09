@@ -1,10 +1,7 @@
 import React from "react";
-import DataGridDemo from "./container/SearchListOfDoctors";
+import DataGridDemo from "./container/DoctorDetails";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
-//import * as React from 'react';
-//import { DataGridPro } from '@mui/x-data-grid-pro';
-//import { useDemoData } from '@mui/x-data-grid-generator';
 
 //import React from "react";
 import AppBar from "@mui/material/AppBar";
@@ -92,7 +89,6 @@ const ColorButton = styled(Button)(({ theme }) => ({
     backgroundColor: lightBlue[50],
   },
 }));
-//backgroundColorcolor="#004E98"
 
 function App() {
   return (
@@ -100,42 +96,50 @@ function App() {
       <AppBar position="static">
         <Toolbar>
           <Grid container alignItems="center" spacing={2}>
-          <ColorButton variant="contained">Home</ColorButton>
+            <ColorButton variant="contained">Home</ColorButton>
             <Grid item>
-              <Typography variant="h5">Doctors list</Typography>
+              <Typography variant="h5">Doctor details</Typography>
             </Grid>
             <Stack spacing={2} direction="row">
-            <Typography variant="title" color="inherit" noWrap>
-    &nbsp;
-  </Typography>
-             
+              <Typography variant="title" color="inherit" noWrap>
+                &nbsp;
+              </Typography>
             </Stack>
           </Grid>
         </Toolbar>
       </AppBar>
-      <Grid item>
-        <Grid item>
-          <Typography variant="h5">Filter by date and time: </Typography>
-        </Grid>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={["DateTimePicker", "DateTimePicker"]}>
-            <div style={dateTimePickerContainer}>
-              <DateTimePicker
-                label="Next free appointment time"
-                viewRenderers={{
-                  hours: renderTimeViewClock,
-                  minutes: renderTimeViewClock,
-                  seconds: renderTimeViewClock,
-                }}
-              />
-            </div>
-            <Typography variant="h5">To filter/search a Column click on it's name then the 3 dots then press filter: </Typography>
-          </DemoContainer>
-        </LocalizationProvider>
+<Grid alignItems="center" sx={{  margin: 'auto',width: 350}}>
+      <Box 
+        
+        component="img"
+        sx={{
+          height: 233,
+          border: 1,
+          width: 350,
+          maxHeight: { xs: 233, md: 167 },
+          maxWidth: { xs: 350, md: 250 },
+        }}
+        alt="The house from the offer."
+        src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+        
+      />
+      <Typography variant="title" color="inherit" noWrap>
+        &nbsp;
+      </Typography>
+      <h3>Name: Balabizo Guc</h3>
+      <h3>Specality: Balabizo Engineering</h3>
+      <h3>appointment price (in EGP): 3000</h3>
+      <h3>Appointment date and time: 3/5/2023 , 4:00 pm</h3>
+      <h3>affiliation: Balabizo Hospital</h3>
+      <h3>Educational Background: Guc</h3>
+      </ Grid>
+      <Grid alignItems="center" sx={{  margin: 'auto',width: 350}}>
+      <Button variant="contained">Reserve</Button>
+      <Typography variant="title" color="inherit" noWrap>
+        &nbsp;
+      </Typography>
+      <Button variant="contained">Back</Button>
       </Grid>
-
-      <DataGridDemo />
-      <Button variant="contained">Select</Button>
     </div>
   );
 }

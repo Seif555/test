@@ -1,11 +1,13 @@
 import React from "react";
-import DataGridDemo from "./container/SearchListOfDoctors";
-import { DataGrid } from "@mui/x-data-grid";
+// import DataGridDemo from "./container/SearchListOfDoctors";
 import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
+import {IconButton
+} from "@mui/material";
 //import * as React from 'react';
 //import { DataGridPro } from '@mui/x-data-grid-pro';
 //import { useDemoData } from '@mui/x-data-grid-generator';
-
+import { Link } from 'react-router-dom';
 //import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -36,6 +38,85 @@ import TableRow from "@mui/material/TableRow";
 
 import Stack from "@mui/material/Stack";
 import { lightBlue } from "@mui/material/colors";
+import { DataGrid } from "@mui/x-data-grid";
+
+const columns = [
+  {
+    field: "image",
+    headerName: "image",
+    width: 550,
+    height: 550,
+    renderCell: (params) => <img src={params.value} />,
+  },
+  { field: "id", headerName: "ID", type: "ID", width: 90 },
+  {
+    field: "firstName",
+    headerName: "First name",
+    width: 150,
+    editable: false,
+  },
+  {
+    field: "lastName",
+    headerName: "Last name",
+    width: 150,
+    editable: false,
+  },
+
+  {
+    field: "specality",
+    headerName: "Specality",
+    width: 150,
+    editable: false,
+  },
+
+  {
+    field: "appointmentPrice",
+    headerName: "Price (in EGP)",
+    type: "number",
+    width: 110,
+    editable: false,
+  },
+  {
+    field: "dateAndTimeAvailable",
+    headerName: "Date and time available",
+
+    width: 160,
+    editable: false,
+  },
+  //{
+  // field: 'fullName',
+  //  headerName: 'Full name',
+  //  description: 'This column has a value getter and is not sortable.',
+  //  sortable: false,
+  //  width: 160,
+  //  valueGetter: (params) =>
+  //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+  // },
+];
+
+const rows = [
+  {
+    image:
+      "https://image.shutterstock.com/image-photo/small-juicy-hamburger-canapes-on-260nw-570368917.jpg",
+    id: 1,
+    firstName: "Jon",
+    lastName: "Snow",
+    specality: "ear",
+    appointmentPrice: 35,
+    dateAndTimeAvailable: "4/5/2023 , 4:00 pm",
+  },
+  {
+    image:
+      "https://image.shutterstock.com/image-photo/small-juicy-hamburger-canapes-on-260nw-570368917.jpg",
+    id: 2,
+    firstName: "Tim",
+    lastName: "Car",
+    specality: "eye",
+    appointmentPrice: 40,
+    dateAndTimeAvailable: "10/5/2023 , 3:00 pm",
+  },
+];
+
 
 const iconStyle = {
   color: "white", // Set the icon color to white
@@ -99,16 +180,22 @@ function App() {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Grid container alignItems="center" spacing={2}>
-          <ColorButton variant="contained">Home</ColorButton>
+          <Grid container alignItems="center" spacing={2} sx={{placeItems :'flex-end'}}>
+            <Link to='/'>
+              <Button Speciality="large">
+                <IconButton>
+                  <HomeIcon style={iconStyle} />
+                </IconButton>
+              </Button>
+            </Link>
             <Grid item>
               <Typography variant="h5">Doctors list</Typography>
             </Grid>
             <Stack spacing={2} direction="row">
-            <Typography variant="title" color="inherit" noWrap>
-    &nbsp;
-  </Typography>
-             
+              <Typography variant="title" color="inherit" noWrap>
+                &nbsp;
+              </Typography>
+
             </Stack>
           </Grid>
         </Toolbar>
@@ -134,8 +221,25 @@ function App() {
         </LocalizationProvider>
       </Grid>
 
-      <DataGridDemo />
+      <Box sx={{ height: "100%", width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+          pageSizeOptions={[5]}
+          checkboxSelection
+          disableRowSelectionOnClick
+        />
+      </Box>
+      <Link to='/Homepage/DoctorsList/Doctordetails'>
       <Button variant="contained">Select</Button>
+      </Link>
     </div>
   );
 }
